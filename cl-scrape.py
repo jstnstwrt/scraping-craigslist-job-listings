@@ -43,6 +43,8 @@ for item in cl_data:
 	listing_content_start = len('<section id="postingbody">')
 	listing_content_end = listing_content_element.find('</section>',listing_content_start)
 	listing_content = listing_content_element[listing_content_start:listing_content_end]
+	listing_terms = re.findall(r"[\w']+", listing_content)
+	listing_terms = [word for word in listing_terms if word != 'br']
 
 
 	cl_listings.append([title, base_url+link, listing_content])
