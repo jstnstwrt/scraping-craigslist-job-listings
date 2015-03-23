@@ -36,6 +36,16 @@ for item in cl_data:
 	link_end = listing_element.find('"',link_start)
 	link = listing_element[link_start:link_end]
 
+	#getting the text content from the listing
+	r2 = requests.get(base_url + link)
+	soup2 = BeautifulSoup(r2.content)
+	listing_content_element = str(soup2.find("section",{"id":"postingbody"}))
+	listing_content_start = len('<section id="postingbody">')
+	listing_content_end = listing_content_element.find('</section>',listing_content_start)
+	listing_content = listing_content_element[listing_content_start:listing_content_end]
+	
+
+
 
 	cl_listings.append(base_url+link)
 
